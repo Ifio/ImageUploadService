@@ -20,7 +20,7 @@ function secondsToTime(secs) { // we will use this function to convert seconds i
 
 function bytesToSize(bytes) {
     var sizes = ['Bytes', 'KB', 'MB'];
-    if (bytes == 0) return 'n/a';
+    if (bytes === 0) return 'n/a';
     var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
     return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
 };
@@ -38,7 +38,7 @@ function fileSelected() {
     var oFile = document.getElementById('file').files[0];
 
     // filter for image files
-    var rFilter = /^(image\/bmp|image\/gif|image\/jpeg|image\/png|image\/tiff)$/i;
+    var rFilter = /^(image\/bmp|image\/gif|image\/jpg|image\/png|image\/tiff)$/i;
     if (! rFilter.test(oFile.type)) {
         document.getElementById('error').style.display = 'block';
         return;
@@ -99,7 +99,7 @@ function startUploading() {
     oXHR.addEventListener('load', uploadFinish, false);
     oXHR.addEventListener('error', uploadError, false);
     oXHR.addEventListener('abort', uploadAbort, false);
-    oXHR.open('POST', 'upload.php');
+    oXHR.open('POST', 'Upload.php');
     oXHR.send(vFD);
 
     // set inner timer
@@ -111,7 +111,7 @@ function doInnerUpdates() { // we will use this function to display upload speed
     var iDiff = iCB - iPreviousBytesLoaded;
 
     // if nothing new loaded - exit
-    if (iDiff == 0)
+    if (iDiff === 0)
         return;
 
     iPreviousBytesLoaded = iCB;
@@ -121,8 +121,9 @@ function doInnerUpdates() { // we will use this function to display upload speed
 
     // update speed info
     var iSpeed = iDiff.toString() + 'B/s';
-    if (iDiff > 1024 * 1024) {
-        iSpeed = (Math.round(iDiff * 100/(1024*1024))/100).toString() + 'MB/s';
+    var mu = 1048576;
+    if (iDiff > mu) {
+        iSpeed = (Math.round(iDiff * 100/(mu))/100).toString() + 'MB/s';
     } else if (iDiff > 1024) {
         iSpeed =  (Math.round(iDiff * 100/1024)/100).toString() + 'KB/s';
     }
@@ -141,7 +142,7 @@ function uploadProgress(e) { // upload process in progress
         document.getElementById('progress_percent').innerHTML = iPercentComplete.toString() + '%';
         document.getElementById('progress').style.width = (iPercentComplete * 4).toString() + 'px';
         document.getElementById('b_transfered').innerHTML = iBytesTransfered;
-        if (iPercentComplete == 100) {
+        if (iPercentComplete === 100) {
             var oUploadResponse = document.getElementById('upload_response');
             oUploadResponse.innerHTML = '<h1>Please wait...processing</h1>';
             oUploadResponse.style.display = 'block';

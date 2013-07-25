@@ -5,26 +5,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> Upload Image Service</title>
         <link rel="stylesheet" href="css/normalize.css" media="screen">
-    	<link rel="stylesheet" href="css/grid.css" media="screen">
-    	<link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
-    	<link rel="stylesheet" type="text/css" href="css/main.css">
-    	<script src="js/actions.js"></script>
-    	
+        <link rel="stylesheet" href="css/grid.css" media="screen">
+        <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <script src="js/actions.js"></script>
     </head>
     <body>
-        <header>
-          </header>
         <div class="container">
             <div class="contr"><h2>You can select the image and click Upload button</h2></div>
-
             <div class="upload_form_cont">
-                <form id="upload_form" enctype="multipart/form-data" method="post" action="upload.php">
+                <form enctype="multipart/form-data" id="upload_form" method="post" action="Upload.php">
                     <div>
-                        <div><label for="file">Please select image file</label></div>
-                        <div><input type="file" name="file" id="file" onchange="fileSelected();" /></div>
+                       <div><label for="file">Please select image file</label></div>
+                       <!-- <div><input type="file" name="file" id="file" onchange="fileSelected();" /></div> -->
+                       <input name="file" type="file" id="file"/><br /><br />
                     </div>
                     <div>
-                        <input type="button" value="Upload" onclick="startUploading()" />
+                        <!-- <input type="button" value="Upload" onclick="startUploading()" /> -->
+                        
+                        <input type="submit" value="Upload it"/>
                     </div>
                     <div id="fileinfo">
                         <div id="filename"> </div>
@@ -50,7 +49,7 @@
                         <div id="upload_response"> </div>
                     </div>
                 </form>
-                <img id="preview" alt="preview"/>
+                <img id="preview"/>
             </div>
         </div>
     </body>
