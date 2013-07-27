@@ -15,12 +15,12 @@ if (!$fileTmpLoc) { // if file not chosen
     exit();
 } else if ($fileSize > 5242880) { // if file size is larger than 5 Megabytes
     echo "ERROR: Your file was larger than 5 Megabytes in size.";
-    unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+    //unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
 } else if (!preg_match("/.(gif|jpg|png)$/i", $fileName)) {
     // This condition is only if you wish to allow uploading of specific file types    
     echo "ERROR: Your image was not .gif, .jpg, or .png.";
-    unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+    //unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
 } else if ($fileErrorMsg == 1) { // if file upload error key is equal to 1
     echo "ERROR: An error occured while processing the file. Try again.";
@@ -35,7 +35,7 @@ if ($moveResult != true) {
     unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
 }
-unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+//unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
 // Display things to the page so you can see what is happening for testing purposes
 echo "The file named <strong>$fileName</strong> uploaded successfuly.<br /><br />";
 echo "It is <strong>$fileSize</strong> bytes in size.<br /><br />";

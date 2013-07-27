@@ -2,7 +2,7 @@
 var iBytesUploaded = 0;
 var iBytesTotal = 0;
 var iPreviousBytesLoaded = 0;
-var iMaxFilesize = 1048576; // 1MB
+var iMaxFilesize = 10485760; // 1MB
 var oTimer = 0;
 var sResultFileSize = '';
 
@@ -26,7 +26,7 @@ function bytesToSize(bytes) {
 };
 
 function fileSelected() {
-
+    
     // hide different warnings
     document.getElementById('upload_response').style.display = 'none';
     document.getElementById('error').style.display = 'none';
@@ -38,7 +38,7 @@ function fileSelected() {
     var oFile = document.getElementById('file').files[0];
 
     // filter for image files
-    var rFilter = /^(image\/bmp|image\/gif|image\/jpg|image\/png|image\/tiff)$/i;
+    var rFilter = /^(image\/bmp|image\/gif|image\/jpg|image\/jpeg|image\/png|image\/tiff)$/i;
     if (! rFilter.test(oFile.type)) {
         document.getElementById('error').style.display = 'block';
         return;
@@ -79,15 +79,18 @@ function fileSelected() {
 function startUploading() {
     // cleanup all temp states
     iPreviousBytesLoaded = 0;
+    
     document.getElementById('upload_response').style.display = 'none';
     document.getElementById('error').style.display = 'none';
     document.getElementById('error2').style.display = 'none';
     document.getElementById('abort').style.display = 'none';
     document.getElementById('warnsize').style.display = 'none';
     document.getElementById('progress_percent').innerHTML = '';
+    
     var oProgress = document.getElementById('progress');
     oProgress.style.display = 'block';
     oProgress.style.width = '0px';
+    
 
     // get form data for POSTing
     //var vFD = document.getElementById('upload_form').getFormData(); // for FF3
