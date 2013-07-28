@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Registration</title>
+        <link rel="stylesheet" type="text/css" href="css/login.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="contr"><h2>Registration</h2></div>
+            <div class="upload_form_cont">
+                <form action="../php/AddUser.php" method="post">
+                    <div>
+                        <div><label>Username</label><input type="text" name="input" id="rUserName" /></div>
+                        <div><label>Password</label><input type="password" name="password" value="" id="rUserPass" /></div>
+                        <div><label>Email</label><input type="email" name="email" value="" id="rUserEmail" /></div>
+                        <div> </div>
+                        <div><input type="submit" value="Submit"/></div>
+                    </div>
+                </form>  
+            </div>
+        </div>
+        <script type="text/javascript" src="js/userReg.js"></script>
+    </body>
+</html>

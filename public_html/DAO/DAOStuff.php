@@ -131,6 +131,34 @@ class DAOStuff {
             return 1;
         }
     }
+            
+    public function insertUser($username,$userPass, $userEmail){
+        
+        $in = "INSERT INTO `tbl_users`(userLogin,userPassword,userNumUploads,userEmail)
+                VALUES('$username','$userPass',0,'$userEmail')";
+        $success = mysql_query($in) or die(mysql_error());
+        if($success){
+            echo("Operation Successfull!");
+        }else{
+            echo("Operation failed!");
+        }
+            
+    }
+    
+    public function insertImage($imageName, $imageType,
+                                $imageFormat,$imageDesc,$imagePath,$file){
+        $addImage = "INSERT INTO `tbl_imagedata` (IdImage,imageName,imageType,
+            imageFormat, imageDescription,imagePath,savedImage)
+                    VALUES('$imageName','$imageType','$imageFormat',
+                            '$imageDesc','$imagePath','$file')";
+        $success = mysql_query($addImage) or die (mysql_error());
+        
+        if($success){
+            echo("Operation Successfull!");
+        }else{
+            echo("Operation failed!");
+        }
+    }
 
 }
 
