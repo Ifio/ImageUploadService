@@ -1,13 +1,15 @@
 <?php
+
 include 'DAO/DAOStuff.php';
 
-$fileName = $_FILES["file"]["name"]; 
+$testCon = new DAOStuff();
+$fileName = $_FILES["file"]["name"];
 $fileTmpLoc = $_FILES["file"]["tmp_name"]; // File in the PHP tmp folder
-$fileType = $_FILES["file"]["type"]; 
-$fileSize = $_FILES["file"]["size"]; 
+$fileType = $_FILES["file"]["type"];
+$fileSize = $_FILES["file"]["size"];
 $fileErrorMsg = $_FILES["file"]["error"]; // 0 = false | 1 = true
-$kaboom = explode(".", $fileName); 
-$fileExt = end($kaboom); 
+$kaboom = explode(".", $fileName);
+$fileExt = end($kaboom);
 $fsMult = 10;
 $fileLimitSize = 1048576 * $fsMult;
 // START PHP Image Upload Error Handling --------------------------------------------------
@@ -19,11 +21,11 @@ if (!$fileTmpLoc) { // if file not chosen
     //unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
 } else if (!preg_match("/.(gif|jpg|png)$/i", $fileName)) {
-    
+
     echo "ERROR: Your image was not .gif, .jpg, or .png.";
-   // unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+    // unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
-} else if ($fileErrorMsg == 1) { 
+} else if ($fileErrorMsg == 1) {
     echo "ERROR: An error occured while processing the file. Try again.";
     exit();
 }
@@ -31,7 +33,8 @@ if (!$fileTmpLoc) { // if file not chosen
 // END PHP Image Upload Error Handling ----------------------------------------------------
 // Place it into your "uploads" folder mow using the move_uploaded_file() function
 $moveResult = move_uploaded_file($fileTmpLoc, "uploads/$fileName");
-
+$path = "uploads/$fileName";
+$testCon->insertImage($fileName, $fileType, $fileExt, "lol", $path, "file");
 // Check to make sure the move result is true before continuing
 if ($moveResult != true) {
     echo "ERROR: File not uploaded. Try again.";

@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8" />
+        <title>Image Upload Service</title>
+        <link rel="stylesheet" type="text/css" href="vistas/css/iniPage.css" />
+        <script src="vistas/js/iniRedir.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="container">
+            <div class="contr"><h2>Welcome to Image Upload Service!</h2></div>
+            <div class="upload_form_cont">
+                <form  action="../php/VerUser.php" id="login" autocomplete="on" method="post">
+                    <div id="buttons">
+                        <button class="button" type="button" id="bttn_login" onclick="redir(this.id);">Login</button>
+                    <button class="button" type="button" id="bttn_register" onclick="redir(this.id);">Register</button>
+                    <button class="button" type="button" id="bttn_Images" onclick="redir(this.id);">Gallery</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

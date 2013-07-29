@@ -131,35 +131,69 @@ class DAOStuff {
             return 1;
         }
     }
-            
-    public function insertUser($username,$userPass, $userEmail){
-        
+
+    public function insertUser($username, $userPass, $userEmail) {
+
         $in = "INSERT INTO `tbl_users`(userLogin,userPassword,userNumUploads,userEmail)
                 VALUES('$username','$userPass',0,'$userEmail')";
         $success = mysql_query($in) or die(mysql_error());
-        if($success){
+        if ($success) {
             echo("Operation Successfull!");
-        }else{
+        } else {
             echo("Operation failed!");
         }
-            
     }
-    
-    public function insertImage($imageName, $imageType,
-                                $imageFormat,$imageDesc,$imagePath,$file){
-        $addImage = "INSERT INTO `tbl_imagedata` (IdImage,imageName,imageType,
+
+    public function insertImage($imageName, $imageType, $imageFormat, $imageDesc, $imagePath, $file) {
+        $addImage = "INSERT INTO `tbl_imagedata` (imageName,imageType,
             imageFormat, imageDescription,imagePath,savedImage)
                     VALUES('$imageName','$imageType','$imageFormat',
                             '$imageDesc','$imagePath','$file')";
-        $success = mysql_query($addImage) or die (mysql_error());
-        
-        if($success){
+        $success = mysql_query($addImage) or die(mysql_error());
+
+        if ($success) {
             echo("Operation Successfull!");
-        }else{
+        } else {
             echo("Operation failed!");
+        }
+    }
+
+    public function downImage($imageId, $imageType) {
+
+        $findImage = "SELECT savedImage 
+                        FROM `Tbl_imagedata`
+                           WHERE IdImage = '$imageId'
+                               AND imageType = '$imageType'";
+
+        $success = mysql_query($findImage) or die(mysql_error());
+
+        if (mysql_num_rows($success) == 0) {
+            echo "Database is empty <br>";
+        } else {
+            while (list($id, $name) = mysql_fetch_array($success)) {
+                
+            }
+        }
+    }
+
+    public function validateUser($username, $password) {
+        $username = str_replace("'", "''", $username);
+        $password = md5($password);
+
+        $verify = "SELECT userPassword FROM `Tbl_users`
+                        WHERE userLogin = '$username'";
+        $success = mysql_query($verify) or die(mysql_error());
+        if (!$success || (mysql_num_rows($success) < 1)) {
+            return 1; //failed to verify
+        }
+
+        $dbArray = mysql_fetch_array($success);
+
+        if ($password == $dbArray['userPassword']) {
+            return 0; //yep user exists.
+        } else {
+            return 1; //password failure;
         }
     }
 
 }
-
-?>

@@ -16,13 +16,23 @@
             <div class="upload_form_cont">
                 <form enctype="multipart/form-data" id="upload_form" method="post" action="../Upload.php">
                     <div>
-                       <div><label for="file">Please select image file</label></div>
-                       <!-- <div><input type="file" name="file" id="file" onchange="fileSelected();" /></div> -->
-                       <div><input name="file" type="file" id="file" onchange="fileSelected();" /><br /><br /></div>
+                        <div><label for="file">Please select image file</label></div>
+                        <!-- <div><input type="file" name="file" id="file" onchange="fileSelected();" /></div> -->
+                        <div><input name="file" type="file" id="file" onchange="fileSelected();" /><br /><br /></div>
+                    </div>
+                    <div>
+                        <label>Category</label>
+                        <input name="catText" type="text">
+                    </div>
+                    <div>
+                        <label>Please enter description or image caption</label>
+                    </div>
+                    <div>
+                        <textarea name="desc" rows='4' cols='70' maxlength="250">This is just a pic I don't want to give a description.</textarea>
                     </div>
                     <div>
                         <input type="button" value="Upload" onclick="startUploading();" />
-                   <!--     <input type="submit" value="Upload it"/> -->
+                        <!--     <input type="submit" value="Upload it"/> -->
                     </div>
                     <div id="fileinfo">
                         <div id="filename"> </div>
@@ -52,6 +62,6 @@
             </div>
         </div>
     </body>
-    
-    
+
+
 </html>
