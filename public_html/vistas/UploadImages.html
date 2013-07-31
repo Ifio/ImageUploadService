@@ -22,13 +22,14 @@
                     </div>
                     <div>
                         <label>Category</label>
-                        <input name="catText" type="text">
+                        <input name="catText"  id="catText" type="text">
                     </div>
                     <div>
                         <label>Please enter description or image caption</label>
                     </div>
                     <div>
-                        <textarea name="desc" rows='4' cols='70' maxlength="250">This is just a pic I don't want to give a description.</textarea>
+                      <!--  <textarea  id="txtArea_1" name="desc" rows='4' cols='70' maxlength="250">This is just a pic I don't want to give a description.</textarea>-->
+                        <input id="desc" name="desc" type="text"/>
                     </div>
                     <div>
                         <input type="button" value="Upload" onclick="startUploading();" />

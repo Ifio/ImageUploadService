@@ -86,6 +86,8 @@ function startUploading() {
     document.getElementById('abort').style.display = 'none';
     document.getElementById('warnsize').style.display = 'none';
     document.getElementById('progress_percent').innerHTML = '';
+    document.getElementById('catText').valueOf();
+    document.getElementById('desc').valueOf();
     
     var oProgress = document.getElementById('progress');
     oProgress.style.display = 'block';

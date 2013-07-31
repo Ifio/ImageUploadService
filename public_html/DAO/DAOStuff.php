@@ -144,11 +144,11 @@ class DAOStuff {
         }
     }
 
-    public function insertImage($imageName, $imageType, $imageFormat, $imageDesc, $imagePath, $file) {
+    public function insertImage($imageName, $imageType, $imageFormat, $imageDesc, $imagePath, $imageCategory, $file) {
         $addImage = "INSERT INTO `tbl_imagedata` (imageName,imageType,
-            imageFormat, imageDescription,imagePath,savedImage)
+            imageFormat, imageDescription,imagePath,imageCategory,savedImage)
                     VALUES('$imageName','$imageType','$imageFormat',
-                            '$imageDesc','$imagePath','$file')";
+                            '$imageDesc','$imagePath','$imageCategory','$file')";
         $success = mysql_query($addImage) or die(mysql_error());
 
         if ($success) {
@@ -195,5 +195,17 @@ class DAOStuff {
             return 1; //password failure;
         }
     }
+    
+    public function getImgToDisplay() {
+        $img_querry = "SELECT imagePath FROM `Tbl_imagedata`";
+        $success = mysql_query($img_querry) or die(mysql_error());
+        $arImg = Array();
+        while ($row = mysql_fetch_array($success)) {
+            array_push($arImg, $row['imagePath']);
+        }
+        echo(json_encode($arImg));
+    }
 
 }
+
+?>
