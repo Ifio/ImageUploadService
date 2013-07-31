@@ -134,18 +134,18 @@ class DAOStuff {
 
     public function insertUser($username, $userPass, $userEmail) {
 
-        $in = "INSERT INTO `tbl_users`(userLogin,userPassword,userNumUploads,userEmail)
+        $in = "INSERT INTO `Tbl_users`(userLogin,userPassword,userNumUploads,userEmail)
                 VALUES('$username','$userPass',0,'$userEmail')";
         $success = mysql_query($in) or die(mysql_error());
         if ($success) {
-            echo("Operation Successfull!");
+            header("Location: ../index.html");
         } else {
-            echo("Operation failed!");
+            // echo("Operation failed!");
         }
     }
 
     public function insertImage($imageName, $imageType, $imageFormat, $imageDesc, $imagePath, $imageCategory, $file) {
-        $addImage = "INSERT INTO `tbl_imagedata` (imageName,imageType,
+        $addImage = "INSERT INTO `Tbl_ImageData` (imageName,imageType,
             imageFormat, imageDescription,imagePath,imageCategory,savedImage)
                     VALUES('$imageName','$imageType','$imageFormat',
                             '$imageDesc','$imagePath','$imageCategory','$file')";
@@ -195,9 +195,9 @@ class DAOStuff {
             return 1; //password failure;
         }
     }
-    
+
     public function getImgToDisplay() {
-        $img_querry = "SELECT imagePath FROM `Tbl_imagedata`";
+        $img_querry = "SELECT imagePath FROM `Tbl_ImageData`";
         $success = mysql_query($img_querry) or die(mysql_error());
         $arImg = Array();
         while ($row = mysql_fetch_array($success)) {

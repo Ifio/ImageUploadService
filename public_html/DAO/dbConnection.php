@@ -27,6 +27,7 @@ class dbConnection {
             return self::$connection;
         }
     }
+
 }
 
 ?>

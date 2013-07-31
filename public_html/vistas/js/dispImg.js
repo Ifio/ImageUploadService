@@ -13,8 +13,6 @@ $(document).ready(function(){
 
 function test() {
     var st;
-    var alt = "";
-    var title = "";
     $.post('../php/DispImages.php',
             function(data) {
                 st = JSON.parse(data);

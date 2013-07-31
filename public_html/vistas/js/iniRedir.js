@@ -9,6 +9,7 @@ function redir(bttn) {
                    window.location = "vistas/UserReg.html";
                    break;
             case 'bttn_Images':
+                   window.location = "vistas/ImgGallery.html";
                break;
       }
 }

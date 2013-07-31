@@ -26,7 +26,7 @@ header {
 
 .crop img {
     border: 2px solid #000;
-    background-color: crimson;
+    background-color: #447799;
     padding:5px;
     width: auto;
     height: auto;
@@ -48,6 +48,10 @@ header h2{
     /*width:700px;*/
     width: 100%;
 
+}
+
+header h3 link{
+    font-weight: normal;
 }
 
 header a.stuts,a.stuts:visited{

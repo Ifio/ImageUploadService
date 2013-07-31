@@ -48,7 +48,7 @@ $path = "uploads/$fileName";
 $testCon->insertImage($fileName, $fileType, $fileExt, $desc, $path,$category, "file");
 // Check to make sure the move result is true before continuing
 if ($moveResult != true) {
-    echo "ERROR: File not uploaded. Try again.";
+    echo "ERROR: File not uploaded. Try again." + $moveResult;
     //unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
 }

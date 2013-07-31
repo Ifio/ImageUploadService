@@ -10,16 +10,19 @@
             <div class="contr"><h2>Registration</h2></div>
             <div class="upload_form_cont">
                 <form action="../php/AddUser.php" method="post">
-                    <div>
-                        <div><label>Username</label><input type="text" name="input" id="rUserName" /></div>
-                        <div><label>Password</label><input type="password" name="password" value="" id="rUserPass" /></div>
-                        <div><label>Email</label><input type="email" name="email" value="" id="rUserEmail" /></div>
-                        <div> </div>
-                        <div><input type="submit" value="Submit"/></div>
+                    <div id="lolDiv">
+
+                        <p><label for="rUserName">Username</label><input type="text" name="input" id="rUserName" /></p>
+                        <p><label for="rUserPass">Password</label><input type="password" name="password" value="" id="rUserPass" /></p>
+                        <p><label for="rUserEmail">Email</label><input type="email" name="email" value="" id="rUserEmail" /></p>
+                        <p><input type="submit" value="Submit" id="sub_bttn" onclick=""/></p>
+                        <div id="backBox">
+                            <p><a href="UserLogin.html">Login</a>
+                                <a href="../index.html">Home</a></p>
+                        </div>
                     </div>
                 </form>  
             </div>
         </div>
-        <script type="text/javascript" src="js/userReg.js"></script>
     </body>
 </html>
