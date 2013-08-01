@@ -2,6 +2,7 @@
 
 include 'DAO/DAOStuff.php';
 
+//vars
 $testCon = new DAOStuff();
 $fileName = $_FILES["file"]["name"];
 $fileTmpLoc = $_FILES["file"]["tmp_name"]; // File in the PHP tmp folder
@@ -9,15 +10,8 @@ $fileType = $_FILES["file"]["type"];
 $fileSize = $_FILES["file"]["size"];
 $fileErrorMsg = $_FILES["file"]["error"]; // 0 = false | 1 = true
 $kaboom = explode(".", $fileName);
-/*
-if (isset($_POST['catText'], $_POST['txtArea_1'])) {
-    $category = $_POST['catText'];
-    $desc = $_POST['txtArea_1'];
-} */
-
 $category = $_POST['catText'];
 $desc = $_POST['desc'];
-
 $fileExt = end($kaboom);
 $fsMult = 10;
 $fileLimitSize = 1048576 * $fsMult;
@@ -33,7 +27,7 @@ if (!$fileTmpLoc) { // if file not chosen
 } else if (!preg_match("/.(gif|jpg|png)$/i", $fileName)) {
 
     echo "ERROR: Your image was not .gif, .jpg, or .png.";
-    // unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
+    //unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
     exit();
 } else if ($fileErrorMsg == 1) {
     echo "ERROR: An error occured while processing the file. Try again.";
@@ -41,11 +35,10 @@ if (!$fileTmpLoc) { // if file not chosen
 }
 
 // END PHP Image Upload Error Handling ----------------------------------------------------
-// Place it into your "uploads" folder mow using the move_uploaded_file() function
-$moveResult = move_uploaded_file($fileTmpLoc, "uploads/$fileName");
-$path = "uploads/$fileName";
-//$testCon->insertImage($fileName, $fileType, $fileExt, "lol", $path,$category, "file");
-$testCon->insertImage($fileName, $fileType, $fileExt, $desc, $path,$category, "file");
+
+$path = '/uploads/'.$fileName;
+$testCon->insertImage($fileName, $fileType, $fileExt, $desc, $path, $category, "file");
+$moveResult = move_uploaded_file($fileTmpLoc, $path);
 // Check to make sure the move result is true before continuing
 if ($moveResult != true) {
     echo "ERROR: File not uploaded. Try again." + $moveResult;
@@ -53,7 +46,6 @@ if ($moveResult != true) {
     exit();
 }
 //unlink($fileTmpLoc); // Remove the uploaded file from the PHP temp folder
-
 echo "The file named <strong>$fileName</strong> uploaded successfuly.<br /><br />";
 echo "It is <strong>$fileSize</strong> bytes in size.<br /><br />";
 echo "It is an <strong>$fileType</strong> type of file.<br /><br />";
